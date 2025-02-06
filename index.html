@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI QR Code Generator</title>
+</head>
+<body>
+    <h2>Enter UPI Details</h2>
+    <form method="POST">
+        <label for="upi_id">UPI ID:</label>
+        <input type="text" name="upi_id" id="upi_id" placeholder="Enter your UPI ID" required>
+        <br><br>
+
+        <label for="name">Recipient Name:</label>
+        <input type="text" name="name" id="name" placeholder="Enter recipient name" required>
+        <br><br>
+
+        <label for="amount">Amount (Optional):</label>
+        <input type="text" name="amount" id="amount" placeholder="Enter amount">
+        <br><br>
+
+        <button type="submit">Generate QR Code</button>
+    </form>
+
+    {% if qr_code %}
+        <h3>Scan this QR Code to Pay</h3>
+        <img src="data:image/png;base64,{{ qr_code }}" alt="UPI QR Code">
+        <p><strong>UPI Payment Link:</strong> <a href="{{ upi_url }}" target="_blank">{{ upi_url }}</a></p>
+    {% endif %}
+</body>
+</html>
